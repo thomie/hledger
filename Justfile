@@ -618,57 +618,57 @@ symlink-web-dirs:
 BENCHMARKING:
 
 # generate standard sample journals in examples/
-samplejournals:
+samplejournals OPTION="":
     # small journals
-    tools/generatejournal 3 5 5            > examples/ascii.journal
-    tools/generatejournal 3 5 5 --mixed    > examples/mixed.journal
-    tools/generatejournal 1 1 10           > examples/1txns-1accts.journal
-    tools/generatejournal 10 10 10         > examples/10txns-10accts.journal
-    tools/generatejournal 100 100 10       > examples/100txns-100accts.journal
+    tools/generatejournal 3 5 5                         > examples/ascii.journal
+    tools/generatejournal 3 5 5 --mixed                 > examples/mixed.journal
+    tools/generatejournal 1 1 10           {{ OPTION }} > examples/1txns-1accts{{ OPTION }}.journal
+    tools/generatejournal 10 10 10         {{ OPTION }} > examples/10txns-10accts{{ OPTION }}.journal
+    tools/generatejournal 100 100 10       {{ OPTION }} > examples/100txns-100accts{{ OPTION }}.journal
     # many transactions
-    tools/generatejournal 1000    1000 10  > examples/1ktxns-1kaccts.journal
-    tools/generatejournal 2000    1000 10  > examples/2ktxns-1kaccts.journal
-    tools/generatejournal 3000    1000 10  > examples/3ktxns-1kaccts.journal
-    tools/generatejournal 4000    1000 10  > examples/4ktxns-1kaccts.journal
-    tools/generatejournal 5000    1000 10  > examples/5ktxns-1kaccts.journal
-    tools/generatejournal 6000    1000 10  > examples/6ktxns-1kaccts.journal
-    tools/generatejournal 7000    1000 10  > examples/7ktxns-1kaccts.journal
-    tools/generatejournal 8000    1000 10  > examples/8ktxns-1kaccts.journal
-    tools/generatejournal 9000    1000 10  > examples/9ktxns-1kaccts.journal
-    tools/generatejournal 10000   1000 10  > examples/10ktxns-1kaccts.journal
-    tools/generatejournal 20000   1000 10  > examples/20ktxns-1kaccts.journal
-    tools/generatejournal 30000   1000 10  > examples/30ktxns-1kaccts.journal
-    tools/generatejournal 40000   1000 10  > examples/40ktxns-1kaccts.journal
-    tools/generatejournal 50000   1000 10  > examples/50ktxns-1kaccts.journal
-    tools/generatejournal 60000   1000 10  > examples/60ktxns-1kaccts.journal
-    tools/generatejournal 70000   1000 10  > examples/70ktxns-1kaccts.journal
-    tools/generatejournal 80000   1000 10  > examples/80ktxns-1kaccts.journal
-    tools/generatejournal 90000   1000 10  > examples/90ktxns-1kaccts.journal
-    tools/generatejournal 100000  1000 10  > examples/100ktxns-1kaccts.journal
-    tools/generatejournal 1000000 1000 10  > examples/1Mtxns-1kaccts.journal
+    tools/generatejournal 1000    1000 10  {{ OPTION }} > examples/1ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 2000    1000 10  {{ OPTION }} > examples/2ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 3000    1000 10  {{ OPTION }} > examples/3ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 4000    1000 10  {{ OPTION }} > examples/4ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 5000    1000 10  {{ OPTION }} > examples/5ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 6000    1000 10  {{ OPTION }} > examples/6ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 7000    1000 10  {{ OPTION }} > examples/7ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 8000    1000 10  {{ OPTION }} > examples/8ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 9000    1000 10  {{ OPTION }} > examples/9ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000   1000 10  {{ OPTION }} > examples/10ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 20000   1000 10  {{ OPTION }} > examples/20ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 30000   1000 10  {{ OPTION }} > examples/30ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 40000   1000 10  {{ OPTION }} > examples/40ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 50000   1000 10  {{ OPTION }} > examples/50ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 60000   1000 10  {{ OPTION }} > examples/60ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 70000   1000 10  {{ OPTION }} > examples/70ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 80000   1000 10  {{ OPTION }} > examples/80ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 90000   1000 10  {{ OPTION }} > examples/90ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 100000  1000 10  {{ OPTION }} > examples/100ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 1000000 1000 10  {{ OPTION }} > examples/1Mtxns-1kaccts{{ OPTION }}.journal
     # many accounts
-    tools/generatejournal 1000 1 10        > examples/1ktxns-1accts.journal
-    tools/generatejournal 1000 10 10       > examples/1ktxns-10accts.journal
-    tools/generatejournal 1000 100 10      > examples/1ktxns-100accts.journal
-    #tools/generatejournal 1000 1000 10    > examples/1ktxns-1kaccts.journal
-    tools/generatejournal 1000 10000 10    > examples/1ktxns-10kaccts.journal
-    tools/generatejournal 1000 100000 10   > examples/1ktxns-100kaccts.journal
-    tools/generatejournal 1000 1000000 10  > examples/1ktxns-1maccts.journal
-    tools/generatejournal 10000 1 10       > examples/10ktxns-1accts.journal
-    tools/generatejournal 10000 10 10      > examples/10ktxns-10accts.journal
-    tools/generatejournal 10000 100 10     > examples/10ktxns-100accts.journal
-    #tools/generatejournal 10000 1000 10   > examples/10ktxns-1kaccts.journal
-    tools/generatejournal 10000 10000 10   > examples/10ktxns-10kaccts.journal
-    tools/generatejournal 10000 20000 10   > examples/10ktxns-20kaccts.journal
-    tools/generatejournal 10000 30000 10   > examples/10ktxns-30kaccts.journal
-    tools/generatejournal 10000 40000 10   > examples/10ktxns-40kaccts.journal
-    tools/generatejournal 10000 50000 10   > examples/10ktxns-50kaccts.journal
-    tools/generatejournal 10000 60000 10   > examples/10ktxns-60kaccts.journal
-    tools/generatejournal 10000 70000 10   > examples/10ktxns-70kaccts.journal
-    tools/generatejournal 10000 80000 10   > examples/10ktxns-80kaccts.journal
-    tools/generatejournal 10000 90000 10   > examples/10ktxns-90kaccts.journal
-    tools/generatejournal 10000 100000 10  > examples/10ktxns-100kaccts.journal
-    tools/generatejournal 10000 1000000 10 > examples/10ktxns-1maccts.journal
+    tools/generatejournal 1000 1 10        {{ OPTION }} > examples/1ktxns-1accts{{ OPTION }}.journal
+    tools/generatejournal 1000 10 10       {{ OPTION }} > examples/1ktxns-10accts{{ OPTION }}.journal
+    tools/generatejournal 1000 100 10      {{ OPTION }} > examples/1ktxns-100accts{{ OPTION }}.journal
+    #tools/generatejournal 1000 1000 10    {{ OPTION }} > examples/1ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 1000 10000 10    {{ OPTION }} > examples/1ktxns-10kaccts{{ OPTION }}.journal
+    tools/generatejournal 1000 100000 10   {{ OPTION }} > examples/1ktxns-100kaccts{{ OPTION }}.journal
+    tools/generatejournal 1000 1000000 10  {{ OPTION }} > examples/1ktxns-1maccts{{ OPTION }}.journal
+    tools/generatejournal 10000 1 10       {{ OPTION }} > examples/10ktxns-1accts{{ OPTION }}.journal
+    tools/generatejournal 10000 10 10      {{ OPTION }} > examples/10ktxns-10accts{{ OPTION }}.journal
+    tools/generatejournal 10000 100 10     {{ OPTION }} > examples/10ktxns-100accts{{ OPTION }}.journal
+    #tools/generatejournal 10000 1000 10   {{ OPTION }} > examples/10ktxns-1kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 10000 10   {{ OPTION }} > examples/10ktxns-10kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 20000 10   {{ OPTION }} > examples/10ktxns-20kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 30000 10   {{ OPTION }} > examples/10ktxns-30kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 40000 10   {{ OPTION }} > examples/10ktxns-40kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 50000 10   {{ OPTION }} > examples/10ktxns-50kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 60000 10   {{ OPTION }} > examples/10ktxns-60kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 70000 10   {{ OPTION }} > examples/10ktxns-70kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 80000 10   {{ OPTION }} > examples/10ktxns-80kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 90000 10   {{ OPTION }} > examples/10ktxns-90kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 100000 10  {{ OPTION }} > examples/10ktxns-100kaccts{{ OPTION }}.journal
+    tools/generatejournal 10000 1000000 10 {{ OPTION }} > examples/10ktxns-1maccts{{ OPTION }}.journal
 
 # The current OS name, in the form used for hledger release binaries: linux, mac, windows or other.
 # can't use $GHC or {{GHC}} here for some reason

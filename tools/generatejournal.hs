@@ -1,7 +1,7 @@
 #!/usr/bin/env stack
 -- stack runghc
 {-
-generatejournal.hs NUMTXNS NUMACCTS ACCTDEPTH [--chinese|--mixed]
+generatejournal.hs NUMTXNS NUMACCTS ACCTDEPTH [--chinese|--mixed|--no-prices]
 
 This generates synthetic journal data for benchmarking & profiling. It
 prints a dummy journal on stdout, with NUMTXNS transactions, one per
@@ -35,17 +35,17 @@ main = do
   let accts = pair $ cycle $ take numaccts $ uniqueAccountNames opts acctdepth
   let comms  = cycle ['A'..'Z']
   let rates = [0.70, 0.71 .. 1.3]
-  mapM_ (\(n,d,(a,b),c,p) -> putStr $ showtxn n d a b c p) $ take numtxns $ zip5 [1..] dates accts comms (drop 1 comms)
+  mapM_ (\(n,d,(a,b),c,p) -> putStr $ showtxn opts n d a b c p) $ take numtxns $ zip5 [1..] dates accts comms (drop 1 comms)
   mapM_ (\(d,rate) -> putStr $ showmarketprice d rate) $ take numtxns $ zip dates (cycle $ rates ++ init (tailErr (reverse rates)))  -- PARTIAL tailErr succeeds because non-null rates list
 
-showtxn :: Int -> Day -> String -> String -> Char -> Char -> String
-showtxn txnno date acct1 acct2 comm pricecomm =
+showtxn :: [String] -> Int -> Day -> String -> String -> Char -> Char -> String
+showtxn opts txnno date acct1 acct2 comm pricecomm =
     printf "%s transaction %d\n  %-40s  %2d %c%s\n  %-40s  %s %c\n\n" d txnno acct1 amt comm pricesymbol acct2 (show amt2) amt2comm
     where
       d = show date
       amt = txnno
       (amt2, amt2comm, pricesymbol)
-        | txnno `rem` 3 == 0 = (fromIntegral (-amt) :: Decimal, comm, "")
+        | "--no-prices" `elem` opts || txnno `rem` 3 == 0 = (fromIntegral (-amt) :: Decimal, comm, "")
         | txnno `rem` 3 == 1 = (fromIntegral (-amt) * rate, pricecomm, printf " @ %s %c" (show rate) pricecomm)
         | otherwise         = (fromIntegral (-amt), pricecomm, printf " @@ %s %c" (show amt) pricecomm)
       rate = 0.70 + 0.01 * fromIntegral (txnno `rem` 60) :: Decimal
